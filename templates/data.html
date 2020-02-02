@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>{{ dates }}</h1>
+{% for p in posts %}
+  <ul>
+    <li>Title: {{ p.Title }}</li>
+    <li>ID: {{ p.id }}</li>
+    <li>Price: {{ p.price }}</li>
+    <li>Average Rating: {{ p.avgRate }}</li>
+    <li>Bedrooms: {{ p.Bedrooms }}</li>
+    <li>Beds: {{ p.Beds }}</li>
+    <li>Bathrooms : {{ p.Baths }}</li>
+  </ul>
+  {% endfor %}
+{% endblock content%}
