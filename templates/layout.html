@@ -1,22 +1,68 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}">
     {% if title %}
-      <title>Vaycay For Stay - {{ title }}</title>
+      <title>Bullbnb - {{ title }}</title>
     {% else %}
-      <title>Vaycay For Stay</title>
+      <title>Bullbnb</title>
     {% endif %}
   </head>
   <body>
-    <div class="container">
+    <h1 id="mainHeading">Bullbnb</h1>
+    <form id="mainForm" method="post">
+      <p id="whereLabel">Location<input id="whereInput" type="text" name="Location" placeholder="Location"/></p><br id="optionalBr">
+      <p id="whenStartLabel">Trip Range Start<input id="whenInputStart" type="date" name="Trip Range Start" placeholder="Earliest Start Date"/></p>
+      <p id="whenEndLabel">Trip Range End<input id="whenInputEnd" type="date" name="Trip Range End" placeholder="Latest End Date"/></p><br>
+      <p id="durationLabel">Trip Duration<input id="durationInput" type="number" name="Trip Duration" placeholder="Trip Duration (# of Days)"/></p><br>
+      <input id="mainSubmit" type="submit"/>
+    </form>
+    <div class="container" id="vennBox">
       {% block content %}{% endblock %}
     </div>
-    
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script>
+      // handles button clicks
+      function btnClicked(btnId){
+        switch(btnId){
+          case "whereCircle":
+            mainFormPop(true, false);
+            break;
+          case "whenCircle":
+            mainFormPop(false, true);
+            break;
+          case "bothCircle":
+            mainFormPop(true, true);
+            break;
+        }
+      }
+
+      // displays the proper elements of the main input form depending on the chosen option
+      function mainFormPop(where = false, when = false){
+        mainForm.style.display = "block";
+        whereInput.style.display = whereLabel.style.display = where?"inline-block":"none";
+        whenInputStart.style.display = whenInputEnd.style.display = whenStartLabel.style.display = whenEndLabel.style.display = when?"inline-block":"none";
+        optionalBr1.style.display = optionalBr2.style.display = (where && when)?"inline":"none";
+      }
+
+      // gets the main form and inputs
+      var mainForm = document.getElementById("mainForm");
+      var whereLabel = document.getElementById("whereLabel");
+      var whereInput = document.getElementById("whereInput");
+      var whenStartLabel = document.getElementById("whenStartLabel");
+      var whenEndLabel = document.getElementById("whenEndLabel");
+      var whenInputStart = document.getElementById("whenInputStart");
+      var whenInputEnd = document.getElementById("whenInputEnd");
+      var durationInput = document.getElementById("durationInput");
+      var optionalBr1 = document.getElementById("optionalBr1");
+      var optionalBr2 = document.getElementById("optionalBr2");
+
+      // grabs the venn diagram parts and assigns click function calls to them
+      var whereCircle = document.getElementById("whereCircle");
+      whereCircle.addEventListener('click', function(){btnClicked("whereCircle");});
+      var whenCircle = document.getElementById("whenCircle");
+      whenCircle.addEventListener('click', function(){btnClicked("whenCircle");});
+      var bothCircle = document.getElementById("bothCircle");
+      bothCircle.addEventListener('click', function(){btnClicked("bothCircle");});
+    </script>
   </body>
 </html>

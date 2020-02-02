@@ -1,30 +1,8 @@
 {% extends "layout.html" %}
 {% block content %}
-<article class="Venn2">
-  <h2>Stock Model</h2>
-  <div class="circle one">
-    <span></span>
-    <span></span>
-    <h3>When</h3>
-    <p>
-      Find the best Air BnB deals at popular destinations for when you go!
-    </p>
-  </div>
-  <div class="circle two">
-    <span></span>
-    <span></span>
-    <h3>Where</h3>
-    <p>
-      Find when the best Air BnB deals are based on where you want to go!
-    </p>
-  </div>
-  <div class="shape onetwo">
-    <span></span>
-    <span></span>
-    <h3>When + Where</h3>
-    <p>
-      Find the best Ait BnB deal for where you are going and when you are going!
-    </p>
-  </div>
-</article>
+<svg viewBox="0 0 296 200" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <circle style="fill: rgb(255, 137, 239);" cx="100" cy="100" r="100" id="whereCircle"/>
+  <circle style="fill: rgb(53, 255, 245);" cx="197" cy="100" r="99" id="whenCircle"/>
+  <path style="fill: rgb(106, 255, 135);" transform="matrix(1.199758, -0.000052, 0.000048, 1.102251, -402.748505, -130.509781)" d="M 459.698 130.617 A 92.611 92.611 0 0 1 459.698 289.383 A 91.65 91.65 0 0 1 459.698 130.617 Z" bx:shape="crescent 412 210 92.611 118 0.51 1@92479e22" id="bothCircle"/>
+</svg>
 {% endblock content%}
